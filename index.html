@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; margin: 0; background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center; background: white; padding: 20px;
+            border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input { padding: 10px; width: 300px; margin-bottom: 10px; }
+        button { padding: 10px 15px; cursor: pointer; }
+        #canvas { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <input type="text" id="qrInput" placeholder="Enter text or URL" />
+        <button id="generateBtn">Generate</button>
+        <div id="canvas"></div>
+    </div>
+    
+    <script>
+        document.getElementById('generateBtn').onclick = function() {
+            const qrInput = document.getElementById('qrInput').value; // Get input value
+
+            const qrCode = new QRCodeStyling({
+                width: 300, height: 300, type: "svg",
+                data: qrInput, // Use the input value here
+                image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg", // Optional logo
+                dotsOptions: { color: "#4267b2", type: "rounded" },
+                backgroundOptions: { color: "#e9ebee" },
+                imageOptions: { crossOrigin: "anonymous", margin: 20 }
+            });
+            qrCode.append(document.getElementById("canvas"));
+        };
+    </script>
+</body>
+</html>
