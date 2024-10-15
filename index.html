@@ -32,6 +32,10 @@
         document.getElementById('generateBtn').onclick = function() {
             const qrInput = document.getElementById('qrInput').value; // Get input value
 
+            // Clear the previous QR code
+            const canvas = document.getElementById("canvas");
+            canvas.innerHTML = '';
+
             const qrCode = new QRCodeStyling({
                 width: 300, height: 300, type: "svg",
                 data: qrInput, // Use the input value here
@@ -40,7 +44,8 @@
                 backgroundOptions: { color: "#e9ebee" },
                 imageOptions: { crossOrigin: "anonymous", margin: 20 }
             });
-            qrCode.append(document.getElementById("canvas"));
+
+            qrCode.append(canvas); // Append to the cleared canvas
         };
     </script>
 </body>
